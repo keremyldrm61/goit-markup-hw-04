@@ -390,7 +390,7 @@ a {
     padding-bottom: 120px;
 }
 
-.container {
+.footer .container {
     display: flex;
     align-items: flex-start;
     gap: 64px;
