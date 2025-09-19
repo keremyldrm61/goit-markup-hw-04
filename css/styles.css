@@ -13,7 +13,14 @@ body {
     padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6, p, ul {
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6, 
+p, 
+ul {
     margin: 0;
     padding: 0;
 }
@@ -45,11 +52,14 @@ a {
 }
 
 /* Header */
-.header {
+.page-header {
     border-bottom: 1px solid #E7E9FC;
+    box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
+        0px 1px 1px rgba(46, 47, 66, 0.16),
+        0px 1px 6px rgba(46, 47, 66, 0.08);
 }
 
-.header .container {
+.page-header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -66,6 +76,7 @@ a {
     line-height: 1.166;
     letter-spacing: 0.03em;
     text-transform: uppercase;
+    margin-right: 76px;
 }
 
 .logo-web {
@@ -76,49 +87,63 @@ a {
     color: #2E2F42;
 }
 
-.menu-nav-list {
+.menu-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
     display: flex;
     gap: 40px;
 }
 
-.menu-nav-link {
+.nav-link {
     color: #2E2F42;
     font-weight: 500;
     font-size: 16px;
     line-height: 1.5;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.2em;
+    /* Figma'daki dikey boşluk */
+    padding: 24px 0;
+    /* padding'in uygulanması için */
+    display: block;
+    /* ::after için konumlandırma */
     position: relative;
+    /* C6, C7 */
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.menu-nav-link:hover,
-.menu-nav-link:focus {
+.nav-link:hover,
+.nav-link:focus {
     color: #404BBF;
 }
 
-.menu-nav-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
+.nav-link.current {
+    color: #404BBF;
+}
+
+.nav-link.current::after {
+    content: "";
+    display: block;
     width: 100%;
     height: 4px;
     background-color: #404BBF;
     border-radius: 2px;
-    transform: scaleX(0);
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.menu-nav-link:hover::after,
-.menu-nav-link:focus::after {
-    transform: scaleX(1);
+    position: absolute;
+    /* Border-bottom'un üzerine gelmesi için */
+    bottom: -1px;
+    left: 0;
 }
 
 .address-info {
+    /* address etiketinin varsayılan italik stilini kaldırmak için */
+    font-style: normal;
     display: flex;
     flex-direction: row;
+    /* Figma'daki boşluk */
     gap: 40px;
-    align-items: flex-end;
+    /* Navigasyon ve adres arasındaki boşluğu otomatik ayarlamak için*/
+    margin-left: auto;
 }
 
 .address-link {
@@ -127,6 +152,7 @@ a {
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: 0.02em;
+    /* C6, C7 */
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -139,32 +165,16 @@ a {
 .hero {
     background-color: #2E2F42;
     text-align: center;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("../images/group-people-working-website-template.jpg");
-    background-size: cover;
+    /* Figma'daki dikey boşluk */
+    padding: 188px 0;
+    /* C1 */
+    background-image: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)), url("../images/group-people-working-website-template.jpg");
+    background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.7;
-    z-index: 1;
-}
-
-.hero-container {
-    width: 1440px;
+    background-size: cover;
+    max-width: 1440px;
+    /* C2 */
     margin: 0 auto;
-    padding-top: 188px;
-    padding-bottom: 188px;
-    position: relative;
-    z-index: 999;
 }
 
 .hero-title {
@@ -174,6 +184,10 @@ a {
     line-height: 1.07;
     letter-spacing: 0.02em;
     margin-bottom: 48px;
+    /* Figma'daki genişlik */
+    max-width: 496px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .btn {
@@ -187,7 +201,9 @@ a {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    /* Figma'daki gölge */
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    /* C6, C7 */
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -203,21 +219,23 @@ a {
 }
 
 .features-item {
+    /* 3 * 24px = 72px boşluk */
     flex-basis: calc((100% - 72px) / 4);
-    text-align: center;
+}
+
+.features-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 112px;
+    background-color: #F4F4FD;
+    border-radius: 4px;
+    margin-bottom: 8px;
 }
 
 .features-icon {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 16px;
-    fill: #4D5AE5;
-    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.features-item:hover .features-icon,
-.features-item:focus .features-icon {
-    fill: #404BBF;
+    /* Figma'daki simge rengi */
+    fill: #2E2F42;
 }
 
 .features-title {
@@ -249,29 +267,31 @@ a {
     line-height: 1.11;
     text-align: center;
     letter-spacing: 0.02em;
+    /* Figma'daki stil */
+    text-transform: capitalize;
     margin-bottom: 72px;
 }
 
 .team-list {
     display: flex;
     gap: 24px;
-    justify-content: center;
 }
 
 .team-item {
     background-color: #FFFFFF;
     padding-bottom: 32px;
     text-align: center;
-    border-radius: 0 0 4px 4px;
-    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 
-    0px 1px 1px rgba(46, 47, 66, 0.16), 
-    0px 2px 1px rgba(46, 47, 66, 0.08);
-    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    /* Figma'daki border-radius */
+    border-radius: 0px 0px 4px 4px;
+    /* C3 */
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+        0px 1px 1px rgba(46, 47, 66, 0.16),
+        0px 2px 1px rgba(46, 47, 66, 0.08);
 }
 
-.team-item:hover,
-.team-item:focus {
-    box-shadow: 0px 12px 24px rgba(46, 47, 66, 0.16);
+.team-card-content {
+    /* Figma'daki boşluklar */
+    padding: 32px 0 0;
 }
 
 .team-name {
@@ -280,7 +300,6 @@ a {
     font-size: 20px;
     line-height: 1.2;
     letter-spacing: 0.02em;
-    margin-top: 32px;
     margin-bottom: 8px;
 }
 
@@ -290,61 +309,63 @@ a {
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: 0.02em;
+    /* Sosyal meda ikonları ile arasındaki boşluk */
+    margin-bottom: 8px;
 }
 
-.team-social-media {
+.social-links-list {
     display: flex;
     justify-content: center;
-    gap: 16px;
-    margin-top: 24px;
+    gap: 24px;
 }
 
-.team-social-link {
+.social-links-item {
+    width: 40px;
+    height: 40px;
+}
+
+.social-links-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    width: 100%;
+    height: 100%;
     background-color: #4D5AE5;
+    border-radius: 50%;
+    /* C6, C7 */
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.team-social-link:hover,
-.team-social-link:focus {
+.social-links-link:hover,
+.social-links-link:focus {
     background-color: #404BBF;
 }
 
-.team-social-icon {
-    width: 20px;
-    height: 20px;
+.social-links-icon {
     fill: #F4F4FD;
-    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.team-social-link:hover .team-social-icon,
-.team-social-link:focus .team-social-icon {
-    fill: #FFFFFF;
 }
 
 /* Portfolio Section */
 .portfolio-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    /* Figma'daki boşluklar */
+    gap: 48px 24px;
 }
 
 .portfolio-item {
     background-color: #FFFFFF;
+    /* 2 * 24px = 48px boşluk */
     flex-basis: calc((100% - 48px) / 3);
-    overflow: hidden;
+    /* C4, C6, C7 */
     transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-item:hover {
-    box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
-    0px 1px 1px rgba(46, 47, 66, 0.16),
-    0px 1px 6px rgba(46, 47, 66, 0.08);
+    /* C4 */
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+        0px 1px 1px rgba(46, 47, 66, 0.16),
+        0px 2px 1px rgba(46, 47, 66, 0.08);
 }
 
 .portfolio-thumb {
@@ -354,23 +375,36 @@ a {
 
 .portfolio-overlay {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    right: 0;
+    width: 100%;
+    height: 100%;
     background-color: #4D5AE5;
-    color: #FFFFFF;
-    padding: 32px 16px;
+    color: #F4F4FD;
+    padding: 40px 32px;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    /* C9 | Başlangıçta gizli kalması için */
     transform: translateY(100%);
+    /* C6, C7 */
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1;
 }
 
 .portfolio-item:hover .portfolio-overlay {
+    /* C9 | Hover'da görünür olması için */
     transform: translateY(0);
 }
 
+.portfolio-content {
+    padding: 32px 16px;
+    border: 1px solid #E7E9FC;
+    /* Üst kenarlığı kaldırmak için */
+    border-top: none;
+}
+
 .portfolio-title {
-    color: #FFFFFF;
+    color: #2E2F42;
     font-weight: 500;
     font-size: 20px;
     line-height: 1.2;
@@ -379,7 +413,7 @@ a {
 }
 
 .portfolio-category {
-    color: #F4F4FD;
+    color: #434455;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.5;
@@ -389,26 +423,19 @@ a {
 /* Footer */
 .footer {
     background-color: #2E2F42;
-    padding-top: 120px;
-    padding-bottom: 120px;
+    /* Figma'daki dikey boşluk */
+    padding: 100px 0;
 }
 
 .footer-container {
     display: flex;
-    align-items: flex-start;
-    gap: 64px;
-    width: 100%;
-    max-width: 1440px;
+    /* Figma'daki hizalama */
+    align-items: baseline;
 }
 
-.footer-info {
-    text-align: left;
-    min-width: 264px;
-}
-
-.footer-social-info {
-    text-align: left;
-    min-width: 208px;
+.footer-logo-text-wrapper {
+    /* Figma'daki boşluk */
+    margin-right: 120px;
 }
 
 .footer-logo .logo-studio {
@@ -421,51 +448,30 @@ a {
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: 0.02em;
-    margin-top: 16px;
-    margin-bottom: 0;
     max-width: 264px;
+    margin-top: 16px;
 }
 
-.social-media-text {
+.footer-social {
+    /* Figma'daki boşluk */
+    margin-left: 120px;
+}
+
+.footer-social-text {
     color: #FFFFFF;
     font-weight: 500;
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: 0.02em;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
 }
 
-.footer-social-media {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 8px;
+.footer .social-links-list {
+    /* Figma'daki hizalama */
+    justify-content: flex-start;
 }
 
-.footer-social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #4D5AE5;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.footer-social-link:hover,
-.footer-social-link:focus {
-    background-color: #404BBF;
-}
-
-.footer-social-icon {
-    width: 20px;
-    height: 20px;
-    fill: #F4F4FD;
-    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.footer-social-link:hover .footer-social-icon,
-.footer-social-link:focus .footer-social-icon {
-    fill: #FFFFFF;
+.footer .social-links-link:hover,
+.footer .social-links-link:focus {
+    background-color: #31D0AA;
 }
